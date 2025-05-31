@@ -1,0 +1,41 @@
+{
+    /*  这是应用于c/c++编译运行的配置文件，配置主机的c编译器
+     *  以及单文件，多文件编译
+     */
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build c/c++: gcc.exe 生成Windows活动文件",
+      "type": "cppbuild",
+      "command": "path/to/gcc",
+      "args": [
+        "-g",
+        "${file}",
+        //"*.c",                // 如果需要编译所有C文件，可以取消注释
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        //"${fileDirname}\\main.exe" // 如果需要指定输出文件名，可以取消注释
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        {
+          "owner": "cpp",
+          "fileLocation": ["relative", "${fileDirname}"],
+          "pattern": {
+            "regexp": "^([a-zA-Z]:\\\\.*?):([0-9]+):([0-9]+): (.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "message": 4
+          }
+        }
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
